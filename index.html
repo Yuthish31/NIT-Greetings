@@ -147,20 +147,20 @@ body {
     color: #444;
     margin-top: 15px;
     text-transform: uppercase; /* Optional to make the text capitalized */
-    opacity: 0; /* Start with the slogan hidden */
-    transform: translateY(20px); /* Start with the slogan below */
-    animation: fadeInUp 2s ease-in-out forwards; /* Apply the animation */
+    white-space: nowrap; /* Prevents line breaks */
+    overflow: hidden; /* Hides the overflow part of the running text */
+    display: block;
+    position: relative;
+    animation: runHorizontal 10s linear infinite; /* Apply the running animation */
 }
 
-/* Define the animation */
-@keyframes fadeInUp {
+/* Define the horizontal running animation */
+@keyframes runHorizontal {
     0% {
-        opacity: 0;
-        transform: translateY(20px);
+        left: 100%; /* Start off-screen to the right */
     }
     100% {
-        opacity: 1;
-        transform: translateY(0);
+        left: -100%; /* Move off-screen to the left */
     }
 }
 
@@ -274,7 +274,9 @@ function updateScreen() {
     else if (hour >= 12 && hour < 16) greeting = "GOOD AFTERNOON";
 
     document.getElementById("greeting").innerText = greeting;
-     document.getElementById("welcomeSlogan").innerText = slogan;
+     // Set the slogan text
+    const sloganElement = document.getElementById("welcomeSlogan");
+    sloganElement.innerText = slogan;
 
     document.getElementById("time").innerText =
         now.toLocaleTimeString("en-IN", {
