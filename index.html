@@ -140,6 +140,14 @@ body {
     color: #ccc;
     text-decoration: none;
 }
+    .greeting-slogan {
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+    font-weight: 600;
+    color: #444;
+    margin-top: 15px;
+    text-transform: uppercase; /* Optional to make the text capitalized */
+}
+
 
 /* ===== OFFLINE BADGE ===== */
 .offline-badge {
@@ -188,6 +196,8 @@ body {
 <div class="header">
     <img src="NIT-college-logo-1024x245.png" class="logo" alt="College Logo">
 </div>
+    <div id="welcomeSlogan" class="greeting-slogan">Welcome to the Future of Learning!</div>
+
 
 <div class="main">
 
@@ -243,6 +253,7 @@ function updateScreen() {
 
     const hour = now.getHours();
     let greeting = "GOOD EVENING";
+    let slogan = "Welcome to the Future of Learning!";
     if (hour >= 5 && hour < 12) greeting = "GOOD MORNING";
     else if (hour >= 12 && hour < 16) greeting = "GOOD AFTERNOON";
 
