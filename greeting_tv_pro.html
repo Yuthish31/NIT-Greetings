@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="./img/cropped-nehru-college-logo1-192x192.png" />
+<title>NIT Welcome Greeting Screen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+    --primary: #0f3c5f;
+}
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: #ffffff;
+    color: #222;
+    overflow: hidden;
+}
+
+/* ===== HEADER ===== */
+.header {
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.logo {
+    max-height: 70px;
+}
+
+/* ===== MAIN GRID ===== */
+.main {
+    display: grid;
+    grid-template-columns: 28% 44% 28%;
+    height: calc(100vh - 120px);
+}
+
+/* ===== EVENTS ===== */
+.events {
+    padding: 15px;
+    border-right: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.events h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.event-image {
+    width: 100%;
+    height: calc(100% - 40px);
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+}
+
+.event-image.show {
+    opacity: 1;
+}
+
+/* ===== CENTER ===== */
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.greeting {
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.time {
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    margin-bottom: 8px;
+}
+
+.date {
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    color: #555;
+}
+
+/* ===== COURSES ===== */
+.courses {
+    padding: 15px;
+    border-left: 1px solid #e0e0e0;
+}
+
+.courses h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.course-box {
+    background: #f7f9fb;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-size: 0.95rem;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    position: fixed;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* ===== CREATOR ===== */
+.creator {
+    position: fixed;
+    bottom: 4px;
+    right: 8px;
+    font-size: 0.75rem;
+    color: #ccc;
+}
+
+.creator a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+/* ===== OFFLINE BADGE ===== */
+.offline-badge {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #d32f2f;
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    border-radius: 20px;
+    display: none;
+    z-index: 1000;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1366px) {
+    .main {
+        grid-template-columns: 32% 36% 32%;
+    }
+    .logo {
+        max-height: 60px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .main {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    .events,
+    .courses {
+        display: none;
+    }
+    .center {
+        height: calc(100vh - 120px);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="offline-badge" id="offlineBadge">OFFLINE</div>
+
+<div class="header">
+    <img src="NIT-college-logo-1024x245.png" class="logo" alt="College Logo">
+</div>
+
+<div class="main">
+
+    <div class="events">
+        <h2>Campus Events</h2>
+        <img id="eventImg" class="event-image show" alt="Event">
+    </div>
+
+    <div class="center">
+        <div id="greeting" class="greeting">Welcome</div>
+        <div id="time" class="time">00:00 AM</div>
+        <div id="date" class="date">Loading date...</div>
+    </div>
+
+    <div class="courses">
+        <h2>Courses Offered</h2>
+        <div class="course-box">B.E – Computer Science and Engineering</div>
+        <div class="course-box">B.E – Aeronautical Engineering</div>
+        <div class="course-box">B.E – Civil Engineering</div>
+        <div class="course-box">B.E – CSE (Cyber Security)</div>
+        <div class="course-box">B.E – CSE (AI & ML)</div>
+        <div class="course-box">B.E – Computer & Communication Engineering</div>
+        <div class="course-box">B.Tech Agricultural Engineering</div>
+        <div class="course-box">B.Tech Food Technology</div>
+        <div class="course-box">B.Tech Information Technology</div>
+        <div class="course-box">MBA – Master of Business Administration</div>
+    </div>
+
+</div>
+
+<div class="footer">
+    Welcome to Our Institution | Excellence • Innovation • Integrity
+</div>
+
+<div class="creator">
+    <a href="https://yuthish-3117.netlify.app/">
+        &copy; <span id="year"></span> Yuthish-3117. All rights reserved.
+    </a>
+</div>
+
+<script>
+/* =====================================================
+   ⏰ SAFE IST TIME (NO API)
+===================================================== */
+
+const offlineBadge = document.getElementById("offlineBadge");
+
+function updateScreen() {
+    const now = new Date();
+
+    // Offline detection
+    offlineBadge.style.display = navigator.onLine ? "none" : "block";
+
+    const hour = now.getHours();
+    let greeting = "Good Evening";
+    if (hour >= 5 && hour < 12) greeting = "Good Morning";
+    else if (hour >= 12 && hour < 16) greeting = "Good Afternoon";
+
+    document.getElementById("greeting").innerText = greeting;
+
+    document.getElementById("time").innerText =
+        now.toLocaleTimeString("en-IN", {
+            timeZone: "Asia/Kolkata",
+            hour: "numeric",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true
+        });
+
+    document.getElementById("date").innerText =
+        now.toLocaleDateString("en-IN", {
+            timeZone: "Asia/Kolkata",
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+}
+
+updateScreen();
+setInterval(updateScreen, 1000);
+
+/* ===== RANDOM SLIDESHOW ===== */
+const images = [];
+for (let i = 1; i <= 7; i++) images.push(`img/${i}.jpeg`);
+for (let i = 8; i <= 15; i++) images.push(`img/${i}.png`);
+for (let i = 16; i <= 22; i++) images.push(`img/${i}.jpeg`);
+
+images.sort(() => Math.random() - 0.5);
+
+let idx = 0;
+const img = document.getElementById("eventImg");
+img.src = images[idx];
+
+setInterval(() => {
+    img.classList.remove("show");
+    setTimeout(() => {
+        idx = (idx + 1) % images.length;
+        img.src = images[idx];
+        img.classList.add("show");
+    }, 1200);
+}, 5000);
+
+/* ===== AUTO REFRESH ===== */
+setTimeout(() => location.reload(), 6 * 60 * 60 * 1000);
+window.onerror = () => location.reload();
+document.getElementById("year").innerText = new Date().getFullYear();
+</script>
+
+</body>
+</html>
