@@ -9,6 +9,10 @@
 <style>
 :root {
     --primary: #0f3c5f;
+    --secondary: #f4f6f9;
+    --card: #ffffff;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
 }
 
 /* ===== RESET ===== */
@@ -21,47 +25,84 @@
 
 body {
     height: 100vh;
-    background: #ffffff;
-    color: #222;
+    background: linear-gradient(180deg, #f8fafc, #eef2f7);
+    color: var(--text-dark);
     overflow: hidden;
 }
 
 /* ===== HEADER ===== */
 .header {
     text-align: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 14px 0;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .logo {
-    max-height: 70px;
+    max-height: 65px;
+}
+
+/* ===== WELCOME SLOGAN ===== */
+.greeting-slogan {
+    background: var(--primary);
+    color: #fff;
+    font-size: clamp(1.3rem, 2.6vw, 2rem);
+    font-weight: 600;
+    padding: 12px 0;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.greeting-slogan span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee-right-left 13s linear infinite;
+}
+
+/* RIGHT ➜ LEFT ➜ AGAIN FROM RIGHT */
+@keyframes marquee-right-left {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 /* ===== MAIN GRID ===== */
 .main {
     display: grid;
     grid-template-columns: 28% 44% 28%;
-    height: calc(100vh - 120px);
+    gap: 18px;
+    padding: 18px;
+    height: calc(100vh - 150px);
 }
 
 /* ===== EVENTS ===== */
 .events {
-    padding: 15px;
-    border-right: 1px solid #e0e0e0;
-    text-align: center;
+    background: var(--card);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
 }
 
 .events h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    text-align: center;
+    color: var(--primary);
 }
 
 .event-image {
+    flex: 1;
     width: 100%;
-    height: calc(100% - 90px);
     object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border-radius: 14px;
     opacity: 0;
     transition: opacity 1.2s ease-in-out;
 }
@@ -72,6 +113,9 @@ body {
 
 /* ===== CENTER ===== */
 .center {
+    background: var(--card);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,126 +124,99 @@ body {
 }
 
 .greeting {
-    font-size: clamp(2.2rem, 4vw, 3.8rem);
-    font-weight: 700;
-    margin-bottom: 15px;
+    font-size: clamp(2.4rem, 4.5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 18px;
     color: var(--primary);
+    letter-spacing: 1px;
 }
 
 .time {
-    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
-    margin-bottom: 8px;
+    font-size: clamp(1.5rem, 2.6vw, 2.3rem);
+    margin-bottom: 10px;
 }
 
 .date {
     font-size: clamp(1rem, 1.8vw, 1.3rem);
-    color: #555;
+    color: var(--text-light);
 }
 
 /* ===== COURSES ===== */
 .courses {
-    padding: 15px;
-    border-left: 1px solid #e0e0e0;
+    background: var(--card);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
 }
 
 .courses h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
     text-align: center;
+    color: var(--primary);
 }
 
 .course-box {
-    background: #f7f9fb;
+    background: var(--secondary);
     border-radius: 10px;
-    padding: 10px 12px;
+    padding: 10px 14px;
     margin-bottom: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     font-size: 0.95rem;
+    transition: transform 0.3s ease;
+}
+
+.course-box:hover {
+    transform: translateX(4px);
 }
 
 /* ===== FOOTER ===== */
 .footer {
     position: fixed;
-    bottom: 8px;
+    bottom: 10px;
     width: 100%;
     text-align: center;
-    font-size: 0.9rem;
-    color: #777;
+    font-size: 0.85rem;
+    color: #6b7280;
 }
 
 /* ===== CREATOR ===== */
 .creator {
     position: fixed;
-    bottom: 4px;
-    right: 8px;
-    font-size: 0.75rem;
-    color: #ccc;
+    bottom: 6px;
+    right: 10px;
+    font-size: 0.7rem;
+    color: #9ca3af;
 }
 
 .creator a {
-    color: #ccc;
+    color: inherit;
     text-decoration: none;
 }
-    /* Add animation to the greeting slogan */
-.greeting-slogan {
-    font-size: clamp(1.6rem, 3vw, 2.5rem);
-    font-weight: 600;
-    color: #444;
-    margin-top: 15px;
-    text-transform: uppercase; /* Optional to make the text capitalized */
-    white-space: nowrap; /* Prevents line breaks */
-    overflow: hidden; /* Hides the overflow part of the running text */
-    display: block;
-    position: relative;
-    animation: runHorizontal 13s linear infinite; /* Apply the running animation */
-}
-
-/* Define the horizontal running animation */
-@keyframes runHorizontal {
-    0% {
-        left: 100%; /* Start off-screen to the right */
-    }
-    100% {
-        left: -100%; /* Move off-screen to the left */
-    }
-}
-
 
 /* ===== OFFLINE BADGE ===== */
 .offline-badge {
     position: fixed;
-    top: 10px;
-    right: 10px;
-    background: #d32f2f;
+    top: 12px;
+    right: 12px;
+    background: #dc2626;
     color: #fff;
-    padding: 6px 12px;
+    padding: 6px 14px;
     font-size: 0.75rem;
-    border-radius: 20px;
+    border-radius: 999px;
     display: none;
     z-index: 1000;
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 1366px) {
-    .main {
-        grid-template-columns: 32% 36% 32%;
-    }
-    .logo {
-        max-height: 60px;
-    }
-}
-
 @media (max-width: 1024px) {
     .main {
         grid-template-columns: 1fr;
-        height: auto;
     }
     .events,
     .courses {
         display: none;
-    }
-    .center {
-        height: calc(100vh - 120px);
     }
 }
 </style>
@@ -212,8 +229,10 @@ body {
 <div class="header">
     <img src="NIT-college-logo-1024x245.png" class="logo" alt="College Logo">
 </div>
-    <div id="welcomeSlogan" class="greeting-slogan">WELCOME TO OUR CAMPUS!</div>
 
+<div id="welcomeSlogan" class="greeting-slogan">
+    <span>WELCOME TO OUR CAMPUS!</span>
+</div>
 
 <div class="main">
 
@@ -223,7 +242,7 @@ body {
     </div>
 
     <div class="center">
-        <div id="greeting" class="greeting">Welcome</div>
+        <div id="greeting" class="greeting">GOOD MORNING</div>
         <div id="time" class="time">00:00 AM</div>
         <div id="date" class="date">Loading date...</div>
     </div>
@@ -255,28 +274,18 @@ body {
 </div>
 
 <script>
-/* =====================================================
-   ⏰ SAFE IST TIME (NO API)
-===================================================== */
-
 const offlineBadge = document.getElementById("offlineBadge");
 
 function updateScreen() {
     const now = new Date();
-
-    // Offline detection
     offlineBadge.style.display = navigator.onLine ? "none" : "block";
 
     const hour = now.getHours();
     let greeting = "GOOD EVENING";
-    let slogan = "WELCOME TO OUR CAMPUS!";
     if (hour >= 5 && hour < 12) greeting = "GOOD MORNING";
     else if (hour >= 12 && hour < 16) greeting = "GOOD AFTERNOON";
 
     document.getElementById("greeting").innerText = greeting;
-     // Set the slogan text
-    const sloganElement = document.getElementById("welcomeSlogan");
-    sloganElement.innerText = slogan;
 
     document.getElementById("time").innerText =
         now.toLocaleTimeString("en-IN", {
@@ -300,12 +309,11 @@ function updateScreen() {
 updateScreen();
 setInterval(updateScreen, 1000);
 
-/* ===== RANDOM SLIDESHOW ===== */
+/* ===== SLIDESHOW ===== */
 const images = [];
 for (let i = 1; i <= 7; i++) images.push(`img/${i}.jpeg`);
 for (let i = 8; i <= 15; i++) images.push(`img/${i}.png`);
 for (let i = 16; i <= 22; i++) images.push(`img/${i}.jpeg`);
-
 images.sort(() => Math.random() - 0.5);
 
 let idx = 0;
@@ -321,7 +329,6 @@ setInterval(() => {
     }, 1200);
 }, 5000);
 
-/* ===== AUTO REFRESH ===== */
 setTimeout(() => location.reload(), 6 * 60 * 60 * 1000);
 window.onerror = () => location.reload();
 document.getElementById("year").innerText = new Date().getFullYear();
