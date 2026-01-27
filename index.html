@@ -63,8 +63,8 @@ body {
 }
 
 @keyframes marquee-right-left {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
 }
 
 /* ===== MAIN GRID ===== */
@@ -96,9 +96,9 @@ body {
 .event-image {
     flex: 1;
     width: 100%;
-    height: 100%;           /* ← ADD THIS */
+    height: 100%;
     object-fit: cover;
-    object-position: center top;  /* ← ADD THIS - prevents center zoom */
+    object-position: center top;
     border-radius: 14px;
     opacity: 0;
     transition: opacity 1.2s ease-in-out;
@@ -125,7 +125,6 @@ body {
     font-weight: 800;
     margin-bottom: 18px;
     color: var(--primary);
-    letter-spacing: 1px;
 }
 
 .time {
@@ -138,41 +137,19 @@ body {
     color: var(--text-light);
 }
 
-/* ===== RIGHT PANEL - ENHANCED STYLING ===== */
+/* ===== RIGHT PANEL ===== */
 .right-panel {
     background: var(--card);
     border-radius: 16px;
-    margin-right: 2rem;
     padding: 16px;
+    margin-right: 2rem;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-    transform: translateY(10px);
-}
-
-.right-panel.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.right-panel h2 {
-    font-size: 1.1rem;
-    margin-bottom: 16px;
-    text-align: center;
-    color: var(--primary);
-    font-weight: 700;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--secondary);
 }
 
 /* ===== COURSES ===== */
 .courses {
-    background: var(--card);
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
 }
@@ -190,34 +167,13 @@ body {
     padding: 10px 14px;
     margin-bottom: 8px;
     font-size: 0.95rem;
-    transition: transform 0.3s ease;
 }
-
-.course-box:hover {
-    transform: translateX(4px);
-}
-
 
 /* ===== TODAY FUNCTION SECTION STYLING ===== */
-.today-section {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
+/* kept for future use */
+.today-section,
 .today-image {
-    flex: 1;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 14px;
-    opacity: 0;
-    transition: opacity 1.2s ease-in-out;
-    border: 3px solid var(--secondary);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-}
-
-.today-image.show {
-    opacity: 1;
+    display: none;
 }
 
 /* ===== FOOTER ===== */
@@ -257,60 +213,23 @@ body {
     display: none;
     z-index: 1000;
 }
-
-/* ===== RESPONSIVE MEDIA SCREENS ===== */
-@media (max-width: 1024px) {
-    .main {
-        grid-template-columns: 1fr;
-        height: auto;
-    }
-    .events {
-        display: none;
-    }
-    .center {
-        padding: 30px 10px;
-    }
-    .greeting {
-        font-size: 3rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .header { padding: 10px 0; }
-    .logo { max-height: 50px; }
-    .greeting-slogan { font-size: 1.2rem; padding: 10px 0; }
-    .greeting { font-size: 2.4rem; }
-    .time { font-size: 1.8rem; }
-    .date { font-size: 1.1rem; }
-    .footer { font-size: 0.75rem; }
-    .creator { font-size: 0.65rem; }
-}
-
-@media (max-width: 480px) {
-    body { overflow-y: auto; }
-    .logo { max-height: 45px; }
-    .greeting { font-size: 2rem; }
-    .time { font-size: 1.5rem; }
-    .date { font-size: 1rem; }
-    .greeting-slogan { font-size: 1rem; letter-spacing: 0.5px; }
-    .footer { bottom: 6px; font-size: 0.7rem; }
-    .creator { display: none; }
-}
 </style>
 </head>
 
 <body>
+
 <div class="offline-badge" id="offlineBadge">OFFLINE</div>
 
 <div class="header">
     <img src="NIT-college-logo-1024x245.png" class="logo" alt="College Logo">
 </div>
 
-<div id="welcomeSlogan" class="greeting-slogan">
+<div class="greeting-slogan">
     <span>WELCOME TO OUR CAMPUS!</span>
 </div>
 
 <div class="main">
+
     <div class="events">
         <h2>Campus Events</h2>
         <img id="eventImg" class="event-image show" alt="Event">
@@ -322,10 +241,8 @@ body {
         <div id="date" class="date">Loading date...</div>
     </div>
 
-    <!-- RIGHT PANEL CONTAINER -->
-    <div id="rightPanel" class="right-panel">
-        <!-- COURSES SECTION -->
-        <div id="coursesSection" class="courses">
+    <div class="right-panel">
+        <div class="courses">
             <h2>Courses Offered</h2>
             <div class="course-box">B.E – Computer Science and Engineering</div>
             <div class="course-box">B.E – Aeronautical Engineering</div>
@@ -338,13 +255,8 @@ body {
             <div class="course-box">B.Tech Information Technology</div>
             <div class="course-box">MBA – Master of Business Administration</div>
         </div>
-        
-        <!-- TODAY FUNCTION SECTION -->
-        <div id="todaySection" class="today-section" style="display: none;">
-            <h2>Today Function</h2>
-            <img id="todayImg" class="today-image show" alt="Today Function">
-        </div>
     </div>
+
 </div>
 
 <div class="footer">
@@ -353,7 +265,7 @@ body {
 
 <div class="creator">
     <a href="https://yuthish-3117.netlify.app/">
-        © <span id="year"></span> Yuthish-3117. All rights reserved.
+        © <span id="year"></span> Yuthish-3117
     </a>
 </div>
 
@@ -370,29 +282,20 @@ function updateScreen() {
     else if (hour >= 12 && hour < 16) greeting = "GOOD AFTERNOON";
 
     document.getElementById("greeting").innerText = greeting;
-    document.getElementById("time").innerText = now.toLocaleTimeString("en-IN", {
-        timeZone: "Asia/Kolkata",
-        hour: "numeric", minute: "2-digit", second: "2-digit", hour12: true
-    });
-    document.getElementById("date").innerText = now.toLocaleDateString("en-IN", {
-        timeZone: "Asia/Kolkata",
-        weekday: "long", year: "numeric", month: "long", day: "numeric"
-    });
+    document.getElementById("time").innerText =
+        now.toLocaleTimeString("en-IN", { hour: "numeric", minute: "2-digit", second: "2-digit", hour12: true });
+    document.getElementById("date").innerText =
+        now.toLocaleDateString("en-IN", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
 }
 
 updateScreen();
 setInterval(updateScreen, 1000);
 
-/* ===== ORDERED SLIDESHOW - CAMPUS EVENTS ===== */
+/* ===== CAMPUS EVENTS SLIDESHOW ===== */
 const eventImages = [];
-// JPEG images 1-7 in order
-for (let i = 1; i <= 7; i++) {
-    eventImages.push(`img/${i}.jpeg`);
-}
-// Additional JPEG images 31-43 in order
-for (let i = 31; i <= 43; i++) {
-    eventImages.push(`img/${i}.jpeg`);
-}
+for (let i = 1; i <= 7; i++) eventImages.push(`img/${i}.jpeg`);
+for (let i = 8; i <= 15; i++) eventImages.push(`img/${i}.png`);
+for (let i = 16; i <= 22; i++) eventImages.push(`img/${i}.jpeg`);
 
 let eventIdx = 0;
 const eventImg = document.getElementById("eventImg");
@@ -407,55 +310,6 @@ setInterval(() => {
     }, 1200);
 }, 5000);
 
-/* ===== COURSES ↔ TODAY FUNCTION SLIDESHOW (8sec + 9sec cycle) ===== */
-const rightPanel = document.getElementById("rightPanel");
-const coursesSection = document.getElementById("coursesSection");
-const todaySection = document.getElementById("todaySection");
-const todayImg = document.getElementById("todayImg");
-
-const todayImages = [
-    'img/New-event.jpeg'
-];
-let todayImgIdx = 0;
-
-let slideshowState = 0; // 0 = courses, 1 = today function
-
-function switchToCourses() {
-    rightPanel.classList.remove("show");
-    setTimeout(() => {
-        coursesSection.style.display = "flex";
-        todaySection.style.display = "none";
-        rightPanel.classList.add("show");
-        slideshowState = 0;
-    }, 800);
-}
-
-function switchToToday() {
-    rightPanel.classList.remove("show");
-    setTimeout(() => {
-        coursesSection.style.display = "none";
-        todaySection.style.display = "flex";
-        todayImg.src = todayImages[todayImgIdx];
-        todayImg.classList.add("show");
-        rightPanel.classList.add("show");
-        slideshowState = 1;
-    }, 800);
-}
-
-// Start with Courses
-rightPanel.classList.add("show");
-coursesSection.style.display = "flex";
-
-// Main slideshow timer
-setInterval(() => {
-    if (slideshowState === 0) {
-        switchToToday();
-        setTimeout(switchToCourses, 9000);
-    }
-}, 8000);
-
-setTimeout(() => location.reload(), 60 * 60 * 1000);
-window.onerror = () => location.reload();
 document.getElementById("year").innerText = new Date().getFullYear();
 </script>
 
